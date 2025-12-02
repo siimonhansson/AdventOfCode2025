@@ -41,6 +41,7 @@
         {
             return day switch
             {
+                1 => Day01.Part2(input),
                 _ => "Not Implemented"
             };
         }
