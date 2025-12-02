@@ -6,7 +6,7 @@
         
         static void Main(string[] args)
         {
-
+            SolveDay(1);
         }
 
         private static string GetInput(int day)
@@ -25,13 +25,14 @@
             Console.WriteLine($"~*~ Day {day:00} ~*~\n");
             string input = GetInput(day);
             Console.WriteLine($"Part 1: {SolvePart1(1, input)}");
-            Console.WriteLine($"Part 2: {SolvePart1(1, input)}\n");
+            Console.WriteLine($"Part 2: {SolvePart2(1, input)}\n");
         }
 
         private static string SolvePart1(int day, string input)
         {
             return day switch
             {
+                1 => Day01.Part1(input),
                 _ => "Not Implemented"
             };
         }
