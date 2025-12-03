@@ -8,6 +8,7 @@
         {
             SolveDay(1);
             SolveDay(2);
+            SolveDay(3);
         }
 
         private static string GetInput(int day)
@@ -35,6 +36,7 @@
             {
                 1 => Day01.Part1(input),
                 2 => Day02.Part1(input),
+                3 => Day03.Part1(input),
                 _ => "Not Implemented"
             };
         }
@@ -45,6 +47,7 @@
             {
                 1 => Day01.Part2(input),
                 2 => Day02.Part2(input),
+                3 => Day03.Part2(input),
                 _ => "Not Implemented"
             };
         }
