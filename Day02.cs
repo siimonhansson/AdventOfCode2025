@@ -6,7 +6,11 @@ namespace AdventOfCode2025
 {
     internal static class Day02
     {
-        public static string Part1(string input)
+        public static string Part1(string input) => GetTotal(input, IsValidID_Part1);
+
+        public static string Part2(string input) => GetTotal(input, IsValidID_Part2);
+
+        private static string GetTotal(string input, Func<long, bool> validCheck)
         {
             string[] inputLines = input.Split(',');
             long total = 0;
@@ -23,19 +27,14 @@ namespace AdventOfCode2025
 
                 for (long i = start; i <= end; i++)
                 {
-                    if (!IsValidID(i)) total += i;
+                    if (!validCheck(i)) total += i;
                 }
             }
 
             return total.ToString();
         }
 
-        public static string Part2(string input)
-        {
-            return "Not implemented";
-        }
-
-        private static bool IsValidID(long id)
+        private static bool IsValidID_Part1(long id)
         {
             string idString = id.ToString();
             int idLen = idString.Length;
@@ -45,6 +44,35 @@ namespace AdventOfCode2025
             int midPoint = idLen / 2;
 
             return idString[..midPoint] != idString[midPoint..]; // Invalid if mirrored.
+        } 
+
+        private static bool IsValidID_Part2(long id)
+        {
+            string idString = id.ToString();
+            int idLen = idString.Length;
+
+            for (int patternLen = 1; patternLen <= idLen / 2; patternLen++)
+            {
+                if (idLen % patternLen != 0) continue; // Can't be mirrored if not even.
+
+                string patternString = idString[.. patternLen];
+
+                bool isRepeating = true;
+
+                for (int i = patternLen; i < idLen; i += patternLen)
+                {
+                    string segment = idString.Substring(i, patternLen);
+                    if (segment != patternString)
+                    {
+                        isRepeating = false;
+                        break; 
+                    }
+                }
+
+                if (isRepeating) return false;
+            }
+
+            return true;
         } 
     }
 }
